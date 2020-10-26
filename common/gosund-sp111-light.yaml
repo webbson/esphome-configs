@@ -1,0 +1,32 @@
+<<: !include gosund-sp111-base.yaml
+
+binary_sensor:
+  # Binary sensor for the button press
+  - platform: gpio
+    name: "${name} button"
+    pin:
+      number: GPIO13
+      inverted: true
+    on_press:
+      - light.toggle: internal_light
+
+output:
+  # Relay state led
+  - platform: esp8266_pwm
+    id: state_led
+    pin:
+      number: GPIO2
+      inverted: true
+  - platform: gpio
+    id: light_relay
+    pin: GPIO15
+
+light:
+  # Relay state light
+  - platform: monochromatic
+    output: state_led
+    id: led
+  - platform: binary
+    name: $name
+    output: light_relay
+    id: internal_light

@@ -1,0 +1,22 @@
+wifi:
+  ssid: !secret wifiname
+  password: !secret wifipass
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "${name} fallback"
+    password: "3XtYLy5n2pgc"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+ota:
+web_server:
+  port: 80
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time

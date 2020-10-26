@@ -1,0 +1,7 @@
+substitutions:
+  name: "Enya window"
+  internal_name: enya_window
+  voltage_divider: "771"
+  current_resistor: "0.0012"
+
+<<: !include common/gosund-sp111-light.yaml

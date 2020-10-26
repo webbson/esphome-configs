@@ -1,0 +1,50 @@
+esphome:
+  name: $internal_name
+  platform: ESP8266
+  board: esp8285
+
+<<: !include base.yaml
+
+sensor:
+  # Power sensor
+  - platform: hlw8012
+    voltage_divider: $voltage_divider
+    current_resistor: $current_resistor
+    sel_pin:
+      number: GPIO12
+      inverted: true
+    cf_pin: GPIO05
+    cf1_pin: GPIO04
+    change_mode_every: 3
+    update_interval: 5s
+    # Current sensor
+    current:
+      name: "${name} current"
+      unit_of_measurement: A
+      accuracy_decimals: 3
+    # Voltage sensor
+    voltage:
+      name: "${name} voltage"
+      unit_of_measurement: V
+      accuracy_decimals: 1
+    # Power sensor
+    power:
+      id: power
+      name: "${name} power"
+      unit_of_measurement: W
+      accuracy_decimals: 0
+      filters:
+        - multiply: 0.5
+  - platform: total_daily_energy
+    name: "${name} total daily energy"
+    power_id: power
+    filters:
+      # Multiplication factor from W to kW is 0.001
+      - multiply: 0.001
+    unit_of_measurement: kWh
+
+# Uses the red LED as a ESPhome status indicator
+status_led:
+  pin:
+    number: GPIO0
+    inverted: true

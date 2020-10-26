@@ -1,0 +1,16 @@
+substitutions:
+  name: "Dehumidifier"
+  internal_name: dehumidifier
+    # Higher value gives lower watt readout 0.00221
+  current_res: "0.001105"
+  # Lower value gives lower voltage readout
+  voltage_div: "1910"
+
+<<: !include common/nedis-outdoor.yaml
+
+switch:
+  - platform: gpio
+    name: "${name} relay"
+    pin: GPIO14
+    id: relay
+    restore_mode: ALWAYS_ON

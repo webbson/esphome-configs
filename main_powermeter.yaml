@@ -1,0 +1,18 @@
+substitutions:
+  internal_name: main_powermeter
+  name: "Main powermeter"
+
+<<: !include common/nodemcu.yaml
+
+sensor:
+  - platform: pulse_counter
+    pin: GPIO5
+    unit_of_measurement: 'kW'
+    name: 'Power Meter'
+    id: my_power
+    filters:
+      - multiply: 0.06
+    internal_filter: 120us
+  - platform: total_daily_energy
+    name: "Total Daily Energy"
+    power_id: my_power
