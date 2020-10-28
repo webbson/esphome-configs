@@ -1,0 +1,5 @@
+substitutions:
+  name: "Livingroom window lamps"
+  internal_name: livingroom_window_lamps
+
+<<: !include common/shelly1.yaml

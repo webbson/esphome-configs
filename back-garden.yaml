@@ -1,0 +1,5 @@
+substitutions:
+  name: "Back garden"
+  internal_name: back_garden
+
+<<: !include common/shelly1.yaml

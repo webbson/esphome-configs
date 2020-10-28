@@ -1,0 +1,30 @@
+esphome:
+  name: $internal_name
+  platform: ESP8266
+  board: esp01_1m
+
+<<: !include base.yaml
+
+output:
+  - platform: gpio
+    pin: GPIO4
+    id: shelly_1_relay
+
+light:
+  - platform: binary
+    name: $name
+    output: shelly_1_relay
+    id: lightid
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO5
+      #mode: INPUT_PULLUP
+      #inverted: True
+    #name: "Switch Shelly 1"
+    on_state:
+      then:
+        - light.toggle: lightid
+    internal: true
+    id: switchid

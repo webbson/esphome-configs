@@ -1,0 +1,5 @@
+substitutions:
+  name: "Entrance"
+  internal_name: entrance
+
+<<: !include common/shelly1.yaml
