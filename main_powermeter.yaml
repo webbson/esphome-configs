@@ -16,3 +16,4 @@ sensor:
   - platform: total_daily_energy
     name: "Total Daily Energy"
     power_id: my_power
+    accuracy_decimals: 2
